@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TMS-Logistics.API</name>
+    </assembly>
+    <members>
+        <member name="T:TMS_Logistics.API.Controllers.EmployeeController">
+            <summary>
+            员工管理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.EmployeeController.EmployeeList(System.String,System.String,System.Int32)">
+            <summary>
+            员工显示
+            </summary>
+            <param name="EmployeeName"></param>
+            <param name="EmployeePhone"></param>
+            <param name="EmployeeType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.LoginController">
+            <summary>
+            用户登录
+            </summary>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.OutsourcingUnitsController">
+            <summary>
+            外协单位
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OutsourcingUnitsController.OutsourcingUnitsList(System.String,System.String)">
+            <summary>
+            外协单位显示
+            </summary>
+            <param name="OutsourcingUnitName">单位名称</param>
+            <param name="OutsourcingUnitTelephone">电话</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OutsourcingUnitsController.OutsourcingUnitsAdd(TMS_Logistics.Model.OutsourcingUnit)">
+            <summary>
+            外协单位添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OutsourcingUnitsController.OutsourcingUnitsDel(System.String)">
+            <summary>
+            外协单位删除
+            </summary>
+            <param name="OutsourcingUnitID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OutsourcingUnitsController.OutsourcingUnitsDetails(System.Int32)">
+            <summary>
+            外协单位反填
+            </summary>
+            <param name="OutsourcingUnitID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OutsourcingUnitsController.OutsourcingUnitsUpd(TMS_Logistics.Model.OutsourcingUnit)">
+            <summary>
+            外协单位修改
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.OwnerOfCargosController">
+            <summary>
+            货主管理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OwnerOfCargosController.OwnerOfCargosList(System.String,System.String,System.Nullable{System.DateTime})">
+            <summary>
+            货主显示
+            </summary>
+            <param name="EmployeeName">货主姓名</param>
+            <param name="EmployeePhone">手机号</param>
+            <param name="DrivingLicenceTime">驾驶证有效日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OwnerOfCargosController.OwnerOfCargosAdd(TMS_Logistics.Model.OwnerOfCargo)">
+            <summary>
+            货主添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OwnerOfCargosController.OwnerOfCargosDel(System.String)">
+            <summary>
+            货主删除
+            </summary>
+            <param name="OwnerOfCargoID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OwnerOfCargosController.OwnerOfCargoDetails(System.Int32)">
+            <summary>
+            货主反填
+            </summary>
+            <param name="OwnerOfCargoID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.OwnerOfCargosController.OutsourcingUnitsUpd(TMS_Logistics.Model.OwnerOfCargo)">
+            <summary>
+            货主修改
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.RegistrationController">
+            <summary>
+            车辆管理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.RegistrationController.RegistrationList(System.String,System.String,System.String,System.String)">
+            <summary>
+            车辆显示
+            </summary>
+            <param name="FactoryPlateModel">厂牌型号</param>
+            <param name="LicensePlateNumber">车牌号</param>
+            <param name="LicensePlateName">司机姓名</param>
+            <param name="SubordinateCompanies">所属公司</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.RegistrationController.RegistrationAdd(TMS_Logistics.Model.RegistrationModel)">
+            <summary>
+            车辆添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.RegistrationController.RegistrationDel(System.String)">
+            <summary>
+            车辆删除
+            </summary>
+            <param name="RegistrationID"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
