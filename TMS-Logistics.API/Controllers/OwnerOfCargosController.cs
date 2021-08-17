@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TMS_Logistics.Model;
 using TMS_Logistics.IRepository;
+using Microsoft.Extensions.Logging;
+
 namespace TMS_Logistics.API.Controllers
 {
     /// <summary>
@@ -14,9 +16,11 @@ namespace TMS_Logistics.API.Controllers
     public class OwnerOfCargosController : Controller
     {
         public IOwnerOfCargos ownerOf;
-        public OwnerOfCargosController(IOwnerOfCargos _ownerOf)
+        public ILogger<LoginController> logger;
+        public OwnerOfCargosController(IOwnerOfCargos _ownerOf, ILogger<LoginController> _logger)
         {
             ownerOf = _ownerOf;
+            logger = _logger;
         }
 
         /// <summary>
@@ -33,9 +37,9 @@ namespace TMS_Logistics.API.Controllers
             {
                 return Ok(ownerOf.OwnerOfCargoList(EmployeeName, EmployeePhone,DrivingLicenceTime));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex,"这里发生了错误");
                 throw;
             }
             
@@ -60,9 +64,9 @@ namespace TMS_Logistics.API.Controllers
                     return Ok("添加失败");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex,"这里发生了错误");
                 throw;
             }
         }
@@ -86,9 +90,9 @@ namespace TMS_Logistics.API.Controllers
                     return Ok("删除失败");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex,"这里发生了错误");
                 throw;
             }
         }
@@ -100,7 +104,16 @@ namespace TMS_Logistics.API.Controllers
         [HttpGet]
         public IActionResult OwnerOfCargoDetails(int OwnerOfCargoID)
         {
-            return Ok(ownerOf.OwnerOfCargoDetails(OwnerOfCargoID));
+            try
+            {
+                return Ok(ownerOf.OwnerOfCargoDetails(OwnerOfCargoID));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex,"这里发生了错误");
+                throw;
+            }
+            
         }
         /// <summary>
         /// 货主修改
@@ -122,9 +135,9 @@ namespace TMS_Logistics.API.Controllers
                     return Ok("修改失败");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex,"这里发生了错误");
                 throw;
             }
         }

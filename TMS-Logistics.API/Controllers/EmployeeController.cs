@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,11 @@ namespace TMS_Logistics.API.Controllers
     public class EmployeeController : Controller
     {
         public IEmployee employee;
-        public EmployeeController(IEmployee _employee)
+        public ILogger<LoginController> logger;
+        public EmployeeController(IEmployee _employee, ILogger<LoginController> _logger)
         {
             employee = _employee;
+            logger = _logger;
         }
         /// <summary>
         /// 员工显示
@@ -32,9 +35,9 @@ namespace TMS_Logistics.API.Controllers
             {
                 return Ok(employee.EmployeeList(EmployeeName,EmployeePhone,EmployeeType));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex, "这里发生了错误");
                 throw;
             }
             
