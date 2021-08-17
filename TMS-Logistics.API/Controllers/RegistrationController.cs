@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TMS_Logistics.Repository;
 using TMS_Logistics.IRepository;
 using TMS_Logistics.Model;
+using Microsoft.Extensions.Logging;
+
 namespace TMS_Logistics.API.Controllers
 {
     /// <summary>
@@ -15,10 +17,11 @@ namespace TMS_Logistics.API.Controllers
     public class RegistrationController : Controller
     {
         public IRegistration registration;
-
-        public RegistrationController(IRegistration _registration)
+        public ILogger<LoginController> logger;
+        public RegistrationController(IRegistration _registration, ILogger<LoginController> _logger)
         {
             registration = _registration;
+            logger = _logger;
         }
         /// <summary>
         /// 车辆显示
@@ -35,9 +38,9 @@ namespace TMS_Logistics.API.Controllers
             {
                 return Ok(registration.RegistrationList(FactoryPlateModel, LicensePlateNumber, LicensePlateName, SubordinateCompanies));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex, "这里发生了错误");
                 throw;
             }
             
@@ -63,9 +66,9 @@ namespace TMS_Logistics.API.Controllers
                 }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex, "这里发生了错误");
                 throw;
             }
         }
@@ -90,9 +93,9 @@ namespace TMS_Logistics.API.Controllers
                 }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex, "这里发生了错误");
                 throw;
             }
         }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using TMS_Logistics.Model;
 using TMS_Logistics.IRepository;
+using Microsoft.Extensions.Logging;
+
 namespace TMS_Logistics.API.Controllers
 {
     /// <summary>
@@ -14,9 +16,11 @@ namespace TMS_Logistics.API.Controllers
     public class OutsourcingUnitsController : Controller
     {
         public IOutsourcingUnits outsourcing;
-        public OutsourcingUnitsController(IOutsourcingUnits _outsourcing)
+        public ILogger<LoginController> logger;
+        public OutsourcingUnitsController(IOutsourcingUnits _outsourcing, ILogger<LoginController> _logger)
         {
             outsourcing = _outsourcing;
+            logger = _logger;
         }
         /// <summary>
         /// 外协单位显示
@@ -32,9 +36,9 @@ namespace TMS_Logistics.API.Controllers
                 return Ok(outsourcing.OutsourcingUnitsList(OutsourcingUnitName, OutsourcingUnitTelephone));
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex, "这里发生了错误");
                 throw;
             }
         }
@@ -59,9 +63,9 @@ namespace TMS_Logistics.API.Controllers
                     return Ok("添加失败");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex, "这里发生了错误");
                 throw;
             }
         }
@@ -85,9 +89,9 @@ namespace TMS_Logistics.API.Controllers
                     return Ok("删除失败");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex, "这里发生了错误");
                 throw;
             }
         }
@@ -99,7 +103,16 @@ namespace TMS_Logistics.API.Controllers
         [HttpGet]
         public IActionResult OutsourcingUnitsDetails(int OutsourcingUnitID)
         {
-            return Ok(outsourcing.OutsourcingUnitsDetails(OutsourcingUnitID));
+            try
+            {
+                return Ok(outsourcing.OutsourcingUnitsDetails(OutsourcingUnitID));
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "这里发生了错误");
+                throw;
+            }
+            
         }
         /// <summary>
         /// 外协单位修改
@@ -121,9 +134,9 @@ namespace TMS_Logistics.API.Controllers
                     return Ok("修改失败");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                logger.LogError(ex, "这里发生了错误");
                 throw;
             }
         }
