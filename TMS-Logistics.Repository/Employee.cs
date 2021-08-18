@@ -9,7 +9,7 @@ using Dapper;
 namespace TMS_Logistics.Repository
 {
     /// <summary>
-    /// 员工
+    /// 员工登记
     /// </summary>
     public class Employee : Base<EmployeeModel>,IEmployee
     {

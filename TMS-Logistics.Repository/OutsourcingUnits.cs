@@ -41,7 +41,7 @@ namespace TMS_Logistics.Repository
             parameters.Add("OutsourcingUnitName", OutsourcingUnitName);
             parameters.Add("OutsourcingUnitTelephone", OutsourcingUnitTelephone);
 
-            string sql = $"select * from OutsourcingUnit where OutsourcingUnitName like concat('%',@OutsourcingUnitName,'%') and OutsourcingUnitTelephone like concat('%',OutsourcingUnitTelephone,'%')";
+            string sql = $"select * from OutsourcingUnit where OutsourcingUnitName like concat('%',@OutsourcingUnitName,'%') and OutsourcingUnitTelephone like concat('%',@OutsourcingUnitTelephone,'%')";
 
 
             return GetList(sql, parameters);
@@ -49,7 +49,7 @@ namespace TMS_Logistics.Repository
 
         public int OutsourcingUnitsUpd(OutsourcingUnit obj)
         {
-            string sql = $"update OutsourcingUnit OutsourcingUnitName='{obj.OutsourcingUnitName}',OutsourcingUnitEmail='{obj.OutsourcingUnitEmail}',OutsourcingUnitTelephone='{obj.OutsourcingUnitTelephone}',OutsourcingUnitPlace='{obj.OutsourcingUnitPlace}',OutsourcingUnitResponsibleName='{obj.OutsourcingUnitResponsibleName}',OutsourcingUnitCreateTime='{obj.OutsourcingUnitCreateTime}'  where OutsourcingUnitID={obj.OutsourcingUnitID}";
+            string sql = $"update OutsourcingUnit set   OutsourcingUnitName='{obj.OutsourcingUnitName}',OutsourcingUnitEmail='{obj.OutsourcingUnitEmail}',OutsourcingUnitTelephone='{obj.OutsourcingUnitTelephone}',OutsourcingUnitPlace='{obj.OutsourcingUnitPlace}',OutsourcingUnitResponsibleName='{obj.OutsourcingUnitResponsibleName}',OutsourcingUnitCreateTime='{obj.OutsourcingUnitCreateTime}'  where OutsourcingUnitID={obj.OutsourcingUnitID}";
 
             return Efec(sql);
         }

@@ -9,7 +9,7 @@ using TMS_Logistics.Model;
 namespace TMS_Logistics.API.Controllers
 {
     /// <summary>
-    /// 员工管理
+    /// 员工登记
     /// </summary>
     [Route("api/[Controller]/[action]")]
     public class EmployeeController : Controller

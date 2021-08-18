@@ -4,9 +4,54 @@
         <name>TMS-Logistics.API</name>
     </assembly>
     <members>
+        <member name="T:TMS_Logistics.API.Controllers.CircuitAdminController">
+            <summary>
+            线路管理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.CircuitAdminController.CircuitAdministrationsList(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            线路显示
+            </summary>
+            <param name="CircuitName">线路名称</param>
+            <param name="CircuitStartPlace">起点</param>
+            <param name="CircuitEndPlace">终点</param>
+            <param name="IsOutsource">是否外协</param>
+            <param name="EmployeePhone">货主手机号</param>
+            <param name="OutsourcingUnitName">货主单位</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.CircuitAdminController.CircuitAdministrationsAdd(TMS_Logistics.Model.CircuitAdministration_V)">
+            <summary>
+            线路管理添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.CircuitAdminController.CircuitAdministrationsDel(System.String)">
+            <summary>
+            线路管理删除
+            </summary>
+            <param name="CircuitAdministrationID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.CircuitAdminController.CircuitAdministrationsDetails(System.Int32)">
+            <summary>
+            线路管理反填
+            </summary>
+            <param name="CircuitAdministrationID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.CircuitAdminController.CircuitAdministrationsUpd(TMS_Logistics.Model.CircuitAdministration_V)">
+            <summary>
+            线路管理修改
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS_Logistics.API.Controllers.EmployeeController">
             <summary>
-            员工管理
+            员工登记
             </summary>
         </member>
         <member name="M:TMS_Logistics.API.Controllers.EmployeeController.EmployeeList(System.String,System.String,System.Int32)">
@@ -16,6 +61,23 @@
             <param name="EmployeeName"></param>
             <param name="EmployeePhone"></param>
             <param name="EmployeeType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.HiredToHandleController">
+            <summary>
+            入职办理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.HiredToHandleController.HiredToHandlesList(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            入职办理显示
+            </summary>
+            <param name="EmployeeName">姓名</param>
+            <param name="DepartmentName">部门</param>
+            <param name="PositionName">职位</param>
+            <param name="EmployeeEntryTime">到岗日期</param>
+            <param name="DepartmentCreateTime">合同签署日期</param>
+            <param name="ExamineStatus">审批状态</param>
             <returns></returns>
         </member>
         <member name="T:TMS_Logistics.API.Controllers.LoginController">
@@ -102,6 +164,47 @@
         <member name="M:TMS_Logistics.API.Controllers.OwnerOfCargosController.OutsourcingUnitsUpd(TMS_Logistics.Model.OwnerOfCargo)">
             <summary>
             货主修改
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.PostageAdminController">
+            <summary>
+            油费管理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.PostageAdminController.PostageAdminList(System.String,System.String)">
+            <summary>
+            油费显示
+            </summary>
+            <param name="LicensePlateNumber">车牌号</param>
+            <param name="ExamineName">经办人</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.PostageAdminController.PostageAdministrationsAdd(TMS_Logistics.Model.PostageAdministration)">
+            <summary>
+            外协单位添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.PostageAdminController.PostageAdministrationsDel(System.String)">
+            <summary>
+            油费删除
+            </summary>
+            <param name="PostageAdministrationID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.PostageAdminController.PostageAdministrationsDetails(System.Int32)">
+            <summary>
+            油费反填
+            </summary>
+            <param name="PostageAdministrationID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.PostageAdminController.OutsourcingUnitsUpd(TMS_Logistics.Model.PostageAdministration)">
+            <summary>
+            油费修改
             </summary>
             <param name="obj"></param>
             <returns></returns>

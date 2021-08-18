@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace TMS_Logistics.Model
 {
     /// <summary>
-    /// 邮费管理表
+    /// 油费管理表
     /// </summary>
     public class PostageAdministration
     {
-        public int PostageAdministrationID { get; set; }//邮费ID
+        public int PostageAdministrationID { get; set; }//油费ID
         public Nullable<int> ComeOnCost { get; set; }    //加油费用//元
         public Nullable<int> FuelCharge { get; set; }    //加油量/L
         public Nullable<int> StartKilometre { get; set; }//起始公里数
