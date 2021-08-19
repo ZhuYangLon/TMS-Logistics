@@ -63,6 +63,50 @@
             <param name="EmployeeType"></param>
             <returns></returns>
         </member>
+        <member name="T:TMS_Logistics.API.Controllers.GoodsMaterialController">
+            <summary>
+            物资采购
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsList(System.String,System.Int32,System.String,System.String,System.Int32)">
+            <summary>
+            物资采购显示
+            </summary>
+            <param name="GoodsAndMaterialsName">货物名称</param>
+            <param name="TextureID">材质外键</param>
+            <param name="PlaceOfOrigin">产地</param>
+            <param name="Proposer">申请人</param>
+            <param name="CommonContractName">审核人</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsAdd(TMS_Logistics.Model.GoodsAndMaterials)">
+            <summary>
+            物资采购添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsDel(System.String)">
+            <summary>
+            物资采购删除
+            </summary>
+            <param name="GoodsAndMaterialsID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsDetails(System.Int32)">
+            <summary>
+            物资采购反填
+            </summary>
+            <param name="GoodsAndMaterialsID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsUpd(TMS_Logistics.Model.GoodsAndMaterials)">
+            <summary>
+            物资采购修改
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS_Logistics.API.Controllers.HiredToHandleController">
             <summary>
             入职办理
@@ -236,6 +280,40 @@
             车辆删除
             </summary>
             <param name="RegistrationID"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.ResignationController">
+            <summary>
+            离职办理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.ResignationController.ResignationsList(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            离职办理显示
+            </summary>
+            <param name="EmployeeName">姓名</param>
+            <param name="DepartmentName">部门</param>
+            <param name="PositionName">职位</param>
+            <param name="EmployeeEntryTime">入职日期</param>
+            <param name="EmployeeEndWorkTime">最后工作日</param>
+            <param name="ExamineStatus">审批状态</param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.TransformationController">
+            <summary>
+            转正管理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.TransformationController.TransformationsList(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            转正管理显示
+            </summary>
+            <param name="EmployeeName">姓名</param>
+            <param name="DepartmentName">部门</param>
+            <param name="PositionName">职位</param>
+            <param name="EmployeeEntryTime">入职日期</param>
+            <param name="EmployeeProposerTime">申请日期</param>
+            <param name="ExamineStatus">审批状态</param>
             <returns></returns>
         </member>
     </members>

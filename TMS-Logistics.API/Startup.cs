@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NLog.Extensions.Logging;
 using System;
@@ -14,6 +15,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
 using TMS_Logistics.Common;
 using TMS_Logistics.IRepository;
@@ -63,6 +65,31 @@ namespace TMS_Logistics.API
                 // 添加控制器层注释，true表示显示控制器注释
                 c.IncludeXmlComments(xmlPath, true);
             });
+
+            //JWT
+            var jwtConfig = Configuration.GetSection("Jwt");
+            //生成密钥
+            var symmetricKeyAsBase64 = jwtConfig.GetValue<string>("Secret"); 
+            var keyByteArray = Encoding.ASCII.GetBytes(symmetricKeyAsBase64); 
+            var signingKey = new SymmetricSecurityKey(keyByteArray);
+            //认证参数
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer(o => 
+                { o.TokenValidationParameters = new TokenValidationParameters { 
+                    ValidateIssuerSigningKey = true,//是否验证签名,不验证的画可以篡改数据，不安全
+
+                    IssuerSigningKey = signingKey,//解密的密钥
+                    ValidateIssuer = true,//是否验证发行人，就是验证载荷中的Iss是否对应 ValidIssuer参数
+                                          
+                    ValidIssuer = jwtConfig.GetValue<string>("Iss"),//发行人
+                    ValidateAudience = true,//是否验证订阅人，就是验证载荷中的Aud是否对应 ValidAudience参数
+                    ValidAudience = jwtConfig.GetValue<string>("Aud"),//订阅人
+                    ValidateLifetime = true,//是否验证过期时间，过期了就拒绝访问
+                    ClockSkew = TimeSpan.Zero,//这个是缓冲过期时间，也就是说，即使我们配置了过期 时间，这里也要考虑进去，过期时间+缓冲，默认好像是7分钟，你可以直接设置为0
+                    RequireExpirationTime = true,
+                         };
+                 });
+
         }
 
         //依赖注入
@@ -82,6 +109,9 @@ namespace TMS_Logistics.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TMS_Logistics.API v1"));
             }
+            app.UseAuthentication();//这个是添加认证
+
+            app.UseAuthorization(); //这个是方法里自带的授权
 
             app.UseHttpsRedirection();
 
