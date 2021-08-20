@@ -16,8 +16,8 @@ namespace TMS_Logistics.API.Controllers
     public class TransformationController : Controller
     {
         public ITransformation transformation;
-        public ILogger<LoginController> logger;
-        public TransformationController(ITransformation _transformation, ILogger<LoginController> _logger)
+        public ILogger<TransformationController> logger;
+        public TransformationController(ITransformation _transformation, ILogger<TransformationController> _logger)
         {
             transformation = _transformation;
             logger = _logger;

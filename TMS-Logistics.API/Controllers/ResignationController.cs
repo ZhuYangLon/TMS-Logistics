@@ -16,8 +16,8 @@ namespace TMS_Logistics.API.Controllers
     public class ResignationController : Controller
     {
         public IResignation registration;
-        public ILogger<LoginController> logger;
-        public ResignationController(IResignation _registration, ILogger<LoginController> _logger)
+        public ILogger<ResignationController> logger;
+        public ResignationController(IResignation _registration, ILogger<ResignationController> _logger)
         {
             registration = _registration;
             logger = _logger;

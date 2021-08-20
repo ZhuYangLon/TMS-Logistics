@@ -16,8 +16,8 @@ namespace TMS_Logistics.API.Controllers
     public class HiredToHandleController : Controller
     {
         public IHiredToHandle hiredTo;
-        public ILogger<LoginController> logger;
-        public HiredToHandleController(IHiredToHandle _hiredTo, ILogger<LoginController> _logger)
+        public ILogger<HiredToHandleController> logger;
+        public HiredToHandleController(IHiredToHandle _hiredTo, ILogger<HiredToHandleController> _logger)
         {
             hiredTo = _hiredTo;
             logger = _logger;

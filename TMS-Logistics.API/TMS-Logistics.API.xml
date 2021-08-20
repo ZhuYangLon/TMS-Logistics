@@ -68,18 +68,18 @@
             物资采购
             </summary>
         </member>
-        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsList(System.String,System.Int32,System.String,System.String,System.Int32)">
+        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsList(System.String,System.String,System.String,System.String,System.String)">
             <summary>
             物资采购显示
             </summary>
             <param name="GoodsAndMaterialsName">货物名称</param>
-            <param name="TextureID">材质外键</param>
+            <param name="GoodsAndMaterialsTypeName">材质</param>
             <param name="PlaceOfOrigin">产地</param>
             <param name="Proposer">申请人</param>
-            <param name="CommonContractName">审核人</param>
+            <param name="TextureName">审核人</param>
             <returns></returns>
         </member>
-        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsAdd(TMS_Logistics.Model.GoodsAndMaterials)">
+        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsAdd(TMS_Logistics.Model.GoodsAndMaterials_V)">
             <summary>
             物资采购添加
             </summary>
@@ -100,7 +100,7 @@
             <param name="GoodsAndMaterialsID"></param>
             <returns></returns>
         </member>
-        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsUpd(TMS_Logistics.Model.GoodsAndMaterials)">
+        <member name="M:TMS_Logistics.API.Controllers.GoodsMaterialController.GoodsAndMaterialsUpd(TMS_Logistics.Model.GoodsAndMaterials_V)">
             <summary>
             物资采购修改
             </summary>
@@ -297,6 +297,22 @@
             <param name="EmployeeEntryTime">入职日期</param>
             <param name="EmployeeEndWorkTime">最后工作日</param>
             <param name="ExamineStatus">审批状态</param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.StorageAdminisController">
+            <summary>
+            入库管理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.StorageAdminisController.StorageAdminissList(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            入库管理显示
+            </summary>
+            <param name="StorageName"></param>
+            <param name="TextureName"></param>
+            <param name="PlaceOfOrigin"></param>
+            <param name="PayType"></param>
+            <param name="Proposer"></param>
             <returns></returns>
         </member>
         <member name="T:TMS_Logistics.API.Controllers.TransformationController">

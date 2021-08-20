@@ -16,8 +16,8 @@ namespace TMS_Logistics.API.Controllers
     public class OwnerOfCargosController : Controller
     {
         public IOwnerOfCargos ownerOf;
-        public ILogger<LoginController> logger;
-        public OwnerOfCargosController(IOwnerOfCargos _ownerOf, ILogger<LoginController> _logger)
+        public ILogger<OwnerOfCargosController> logger;
+        public OwnerOfCargosController(IOwnerOfCargos _ownerOf, ILogger<OwnerOfCargosController> _logger)
         {
             ownerOf = _ownerOf;
             logger = _logger;

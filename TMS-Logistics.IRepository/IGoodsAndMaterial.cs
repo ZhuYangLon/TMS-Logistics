@@ -9,16 +9,16 @@ namespace TMS_Logistics.IRepository
     /// <summary>
     /// 物资管理
     /// </summary>
-    public interface IGoodsAndMaterial:IBase<GoodsAndMaterials>
+    public interface IGoodsAndMaterial:IBase<GoodsAndMaterials_V>
     {
-        List<GoodsAndMaterials> GoodsAndMaterialsList(string GoodsAndMaterialsName, int TextureID,string PlaceOfOrigin,string Proposer,int CommonContractName);
+        List<GoodsAndMaterials_V> GoodsAndMaterialsList(string GoodsAndMaterialsName, string GoodsAndMaterialsTypeName, string PlaceOfOrigin,string Proposer,string TextureName);
 
-        int GoodsAndMaterialsAdd(GoodsAndMaterials obj);
+        int GoodsAndMaterialsAdd(GoodsAndMaterials_V obj);
 
         int GoodsAndMaterialsDel(string GoodsAndMaterialsID);
 
-        int GoodsAndMaterialsUpd(GoodsAndMaterials obj);
+        int GoodsAndMaterialsUpd(GoodsAndMaterials_V obj);
 
-        GoodsAndMaterials GoodsAndMaterialsDetails(int GoodsAndMaterialsID);
+        GoodsAndMaterials_V GoodsAndMaterialsDetails(int GoodsAndMaterialsID);
     }
 }

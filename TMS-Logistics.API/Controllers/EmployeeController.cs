@@ -15,8 +15,8 @@ namespace TMS_Logistics.API.Controllers
     public class EmployeeController : Controller
     {
         public IEmployee employee;
-        public ILogger<LoginController> logger;
-        public EmployeeController(IEmployee _employee, ILogger<LoginController> _logger)
+        public ILogger<EmployeeController> logger;
+        public EmployeeController(IEmployee _employee, ILogger<EmployeeController> _logger)
         {
             employee = _employee;
             logger = _logger;

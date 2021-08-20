@@ -16,8 +16,8 @@ namespace TMS_Logistics.API.Controllers
     public class OutsourcingUnitsController : Controller
     {
         public IOutsourcingUnits outsourcing;
-        public ILogger<LoginController> logger;
-        public OutsourcingUnitsController(IOutsourcingUnits _outsourcing, ILogger<LoginController> _logger)
+        public ILogger<OutsourcingUnitsController> logger;
+        public OutsourcingUnitsController(IOutsourcingUnits _outsourcing, ILogger<OutsourcingUnitsController> _logger)
         {
             outsourcing = _outsourcing;
             logger = _logger;

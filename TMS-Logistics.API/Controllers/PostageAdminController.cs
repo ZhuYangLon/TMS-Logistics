@@ -16,8 +16,8 @@ namespace TMS_Logistics.API.Controllers
     public class PostageAdminController : Controller
     {
         public IPostageAdministration postage;
-        public ILogger<LoginController> logger;
-        public PostageAdminController(IPostageAdministration _postage, ILogger<LoginController> _logger)
+        public ILogger<PostageAdminController> logger;
+        public PostageAdminController(IPostageAdministration _postage, ILogger<PostageAdminController> _logger)
         {
             postage = _postage;
             logger = _logger;

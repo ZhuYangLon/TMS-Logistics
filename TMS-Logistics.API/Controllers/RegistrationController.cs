@@ -17,8 +17,8 @@ namespace TMS_Logistics.API.Controllers
     public class RegistrationController : Controller
     {
         public IRegistration registration;
-        public ILogger<LoginController> logger;
-        public RegistrationController(IRegistration _registration, ILogger<LoginController> _logger)
+        public ILogger<RegistrationController> logger;
+        public RegistrationController(IRegistration _registration, ILogger<RegistrationController> _logger)
         {
             registration = _registration;
             logger = _logger;

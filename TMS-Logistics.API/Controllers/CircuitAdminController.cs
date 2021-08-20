@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 using TMS_Logistics.Model;
 using TMS_Logistics.IRepository;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TMS_Logistics.API.Controllers
 {
     /// <summary>
     /// 线路管理
     /// </summary>
+    [Authorize]
     [Route("api/[controller]/[action]")]
     public class CircuitAdminController : Controller
     {
         public ICircuitAdmin circuit;
-        public ILogger<LoginController> logger;
-        public CircuitAdminController(ICircuitAdmin _circuit, ILogger<LoginController> _logger)
+        public ILogger<CircuitAdminController> logger;
+        public CircuitAdminController(ICircuitAdmin _circuit, ILogger<CircuitAdminController> _logger)
         {
             circuit = _circuit;
             logger = _logger;
@@ -39,6 +41,7 @@ namespace TMS_Logistics.API.Controllers
 
             try
             {
+                
                 return Ok(circuit.CircuitAdministrationsList(CircuitName, CircuitStartPlace, CircuitEndPlace, IsOutsource, EmployeePhone, OutsourcingUnitName));
 
             }

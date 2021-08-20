@@ -16,8 +16,8 @@ namespace TMS_Logistics.API.Controllers
     public class GoodsMaterialController : Controller
     {
         public IGoodsAndMaterial goodsAnd;
-        public ILogger<LoginController> logger;
-        public GoodsMaterialController(IGoodsAndMaterial _goodsAnd, ILogger<LoginController> _logger)
+        public ILogger<GoodsMaterialController> logger;
+        public GoodsMaterialController(IGoodsAndMaterial _goodsAnd, ILogger<GoodsMaterialController> _logger)
         {
             goodsAnd = _goodsAnd;
             logger = _logger;
@@ -26,17 +26,17 @@ namespace TMS_Logistics.API.Controllers
         /// 物资采购显示
         /// </summary>
         /// <param name="GoodsAndMaterialsName">货物名称</param>
-        /// <param name="TextureID">材质外键</param>
+        /// <param name="GoodsAndMaterialsTypeName">材质</param>
         /// <param name="PlaceOfOrigin">产地</param>
         /// <param name="Proposer">申请人</param>
-        /// <param name="CommonContractName">审核人</param>
+        /// <param name="TextureName">审核人</param>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GoodsAndMaterialsList(string GoodsAndMaterialsName, int TextureID, string PlaceOfOrigin, string Proposer, int CommonContractName)
+        public IActionResult GoodsAndMaterialsList(string GoodsAndMaterialsName, string GoodsAndMaterialsTypeName, string PlaceOfOrigin, string Proposer, string TextureName)
         {
             try
             {
-                return Ok(goodsAnd.GoodsAndMaterialsList(GoodsAndMaterialsName, TextureID, PlaceOfOrigin, Proposer, CommonContractName));
+                return Ok(goodsAnd.GoodsAndMaterialsList(GoodsAndMaterialsName, GoodsAndMaterialsTypeName, PlaceOfOrigin, Proposer, TextureName));
 
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace TMS_Logistics.API.Controllers
         /// <param name="obj"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult GoodsAndMaterialsAdd(GoodsAndMaterials obj)
+        public IActionResult GoodsAndMaterialsAdd(GoodsAndMaterials_V obj)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace TMS_Logistics.API.Controllers
         /// <param name="obj"></param>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult GoodsAndMaterialsUpd(GoodsAndMaterials obj)
+        public IActionResult GoodsAndMaterialsUpd(GoodsAndMaterials_V obj)
         {
             try
             {

@@ -1,4 +1,5 @@
 using Autofac;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using NLog.Extensions.Logging;
+using Swashbuckle.AspNetCore.Filters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,6 +61,20 @@ namespace TMS_Logistics.API
                     Description = "用户登录认证接口"
                 });
 
+                #region swagger用JWT验证
+                //开启权限小锁
+                c.OperationFilter<AddResponseHeadersFilter>();
+                c.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
+                //在header中添加token，传递到后台
+                c.OperationFilter<SecurityRequirementsOperationFilter>();
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Description = "JWT授权(数据将在请求头中进行传递)直接在下面框中输入Bearer {token}(注意两者之间是一个空格) \"",
+                    Name = "Authorization",// t默认的参数名称
+                    In = ParameterLocation.Header,// t默认存放Authorization信息的位置(请求头中)
+                    Type = SecuritySchemeType.ApiKey
+                });
+                #endregion
                 // 为 Swagger 设置xml文档注释路径
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
@@ -66,39 +82,50 @@ namespace TMS_Logistics.API
                 c.IncludeXmlComments(xmlPath, true);
             });
 
-            //JWT
-            var jwtConfig = Configuration.GetSection("Jwt");
-            //生成密钥
-            var symmetricKeyAsBase64 = jwtConfig.GetValue<string>("Secret"); 
-            var keyByteArray = Encoding.ASCII.GetBytes(symmetricKeyAsBase64); 
-            var signingKey = new SymmetricSecurityKey(keyByteArray);
-            //认证参数
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer(o => 
-                { o.TokenValidationParameters = new TokenValidationParameters { 
-                    ValidateIssuerSigningKey = true,//是否验证签名,不验证的画可以篡改数据，不安全
 
-                    IssuerSigningKey = signingKey,//解密的密钥
-                    ValidateIssuer = true,//是否验证发行人，就是验证载荷中的Iss是否对应 ValidIssuer参数
-                                          
-                    ValidIssuer = jwtConfig.GetValue<string>("Iss"),//发行人
-                    ValidateAudience = true,//是否验证订阅人，就是验证载荷中的Aud是否对应 ValidAudience参数
-                    ValidAudience = jwtConfig.GetValue<string>("Aud"),//订阅人
-                    ValidateLifetime = true,//是否验证过期时间，过期了就拒绝访问
-                    ClockSkew = TimeSpan.Zero,//这个是缓冲过期时间，也就是说，即使我们配置了过期 时间，这里也要考虑进去，过期时间+缓冲，默认好像是7分钟，你可以直接设置为0
-                    RequireExpirationTime = true,
-                         };
-                 });
+            #region 注册jwt中间件
+            services.AddTransient<JWTService>();
+
+            #endregion
+
+            #region JWT配置
+            services.AddAuthentication(options =>
+            {
+                //认证middleware配置
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+             .AddJwtBearer(options =>
+             {
+                 //主要是jwt  token参数设置
+                 options.TokenValidationParameters = new TokenValidationParameters
+                 {
+                     //颁发者
+                     ValidateIssuer = true,
+                     ValidIssuer = Configuration["JwtSetting:Issuer"],
+                     //被授权者
+                     ValidateAudience = true,
+                     ValidAudience = Configuration["JwtSetting:Audience"],
+                     //秘钥
+                     ValidateIssuerSigningKey = true,
+                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtSetting:SecretKey"])),
+                     //是否验证失效时间【使用当前时间与Token的Claims中的NotBefore和Expires对比】
+                     ValidateLifetime = true,
+                     ClockSkew = TimeSpan.FromMinutes(5)//允许的服务器时间偏移量【5分钟】
+                 };
+             });
+
+            #endregion;
 
         }
 
         //依赖注入
         public void ConfigureContainer(ContainerBuilder build)
         {
-            var bllFilePath = System.IO.Path.Combine(AppContext.BaseDirectory, "TMS-Logistics.Repository.dll"); 
+            var bllFilePath = System.IO.Path.Combine(AppContext.BaseDirectory, "TMS-Logistics.Repository.dll");
             build.RegisterAssemblyTypes(Assembly.LoadFile(bllFilePath)).AsImplementedInterfaces();
         }
-        
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
