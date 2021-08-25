@@ -44,10 +44,10 @@ namespace TMS_Logistics.API.Controllers
                 if (users != null)
                 {
                     var token = jWT.GetToken(UserName);
-                    return Ok(token);
+                    return Ok(new { token= token ,msg="登录成功", meta=200});
                 }
-                
                 return Ok("登录失败");
+                
 
             }
             catch (Exception ex)

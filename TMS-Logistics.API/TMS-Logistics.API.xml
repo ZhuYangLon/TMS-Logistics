@@ -129,6 +129,48 @@
             用户登录
             </summary>
         </member>
+        <member name="T:TMS_Logistics.API.Controllers.MaintainRecordController">
+            <summary>
+            维护记录
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.MaintainRecordController.MaintainRecordsList(System.String,System.String,System.String)">
+            <summary>
+            维护记录显示
+            </summary>
+            <param name="MaintainRecordName"></param>
+            <param name="MaintainRecordTime"></param>
+            <param name="LicensePlateNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.MaintainRecordController.MaintainRecordsAdd(TMS_Logistics.Model.MaintainRecord)">
+            <summary>
+            维护记录添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.MaintainRecordController.MaintainRecordsDel(System.String)">
+            <summary>
+            线路管理删除
+            </summary>
+            <param name="MaintainRecordID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.MaintainRecordController.CircuitAdministrationsDetails(System.Int32)">
+            <summary>
+            维护记录反填
+            </summary>
+            <param name="MaintainRecordID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.MaintainRecordController.MaintainRecordsUpd(TMS_Logistics.Model.MaintainRecord)">
+            <summary>
+            线路管理修改
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS_Logistics.API.Controllers.OutsourcingUnitsController">
             <summary>
             外协单位

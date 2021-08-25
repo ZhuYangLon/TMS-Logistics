@@ -7,12 +7,14 @@ using TMS_Logistics.Repository;
 using TMS_Logistics.IRepository;
 using TMS_Logistics.Model;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TMS_Logistics.API.Controllers
 {
     /// <summary>
     /// 车辆管理
     /// </summary>
+    [Authorize]
     [Route("api/[controller]/[action]")]
     public class RegistrationController : Controller
     {
