@@ -152,7 +152,7 @@
         </member>
         <member name="M:TMS_Logistics.API.Controllers.MaintainRecordController.MaintainRecordsDel(System.String)">
             <summary>
-            线路管理删除
+            维护记录删除
             </summary>
             <param name="MaintainRecordID"></param>
             <returns></returns>
@@ -166,7 +166,7 @@
         </member>
         <member name="M:TMS_Logistics.API.Controllers.MaintainRecordController.MaintainRecordsUpd(TMS_Logistics.Model.MaintainRecord)">
             <summary>
-            线路管理修改
+            维护记录修改
             </summary>
             <param name="obj"></param>
             <returns></returns>
