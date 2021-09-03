@@ -4,6 +4,92 @@
         <name>TMS-Logistics.API</name>
     </assembly>
     <members>
+        <member name="T:TMS_Logistics.API.Controllers.BreakRulesRecordController">
+            <summary>
+            违章记录
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.BreakRulesRecordController.BreakRulesRecordList(System.String,System.String,System.String)">
+            <summary>
+            应收费用显示
+            </summary>
+            <param name="BreakRulesTitle">线路名称</param>
+            <param name="LicensePlateNumber">起点</param>
+            <param name="BreakRulesTime">终点</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.BreakRulesRecordController.BreakRulesRecordAdd(TMS_Logistics.Model.BreakRulesRecord)">
+            <summary>
+            应收费用添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.BreakRulesRecordController.BreakRulesRecordDel(System.String)">
+            <summary>
+            应收费用删除
+            </summary>
+            <param name="BreakRulesID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.BreakRulesRecordController.BreakRulesRecordDetails(System.Int32)">
+            <summary>
+            应收费用反填
+            </summary>
+            <param name="BreakRulesID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.BreakRulesRecordController.BreakRulesRecordUpd(TMS_Logistics.Model.BreakRulesRecord)">
+            <summary>
+            应收费用修改
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.ChargeController">
+            <summary>
+            应收费用管理
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.ChargeController.ChargesList(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            应收费用显示
+            </summary>
+            <param name="ChargeOwnerOfCargoUnit">线路名称</param>
+            <param name="PayType">起点</param>
+            <param name="CheckType">终点</param>
+            <param name="CircuitResponsibleName">是否外协</param>
+            <param name="ProfessionalTime">货主手机号</param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.ChargeController.ChargesAdd(TMS_Logistics.Model.Charge)">
+            <summary>
+            应收费用添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.ChargeController.ChargesDel(System.String)">
+            <summary>
+            应收费用删除
+            </summary>
+            <param name="ChargeID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.ChargeController.ChargesDetails(System.Int32)">
+            <summary>
+            应收费用反填
+            </summary>
+            <param name="ChargeID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.ChargeController.ChargesUpd(TMS_Logistics.Model.Charge)">
+            <summary>
+            应收费用修改
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS_Logistics.API.Controllers.CircuitAdminController">
             <summary>
             线路管理
@@ -372,6 +458,48 @@
             <param name="EmployeeEntryTime">入职日期</param>
             <param name="EmployeeProposerTime">申请日期</param>
             <param name="ExamineStatus">审批状态</param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS_Logistics.API.Controllers.UpkeepRecordController">
+            <summary>
+            保养记录
+            </summary>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.UpkeepRecordController.UpkeepRecordsList(System.String,System.String,System.String)">
+            <summary>
+            保养记录显示
+            </summary>
+            <param name="UpkeepRecordName"></param>
+            <param name="UpkeepRecordNowTime"></param>
+            <param name="LicensePlateNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.UpkeepRecordController.UpkeepRecordsAdd(TMS_Logistics.Model.UpkeepRecord)">
+            <summary>
+            保养记录添加
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.UpkeepRecordController.UpkeepRecordsDel(System.String)">
+            <summary>
+            保养记录删除
+            </summary>
+            <param name="UpkeepRecordID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.UpkeepRecordController.UpkeepRecordsDetails(System.Int32)">
+            <summary>
+            保养记录反填
+            </summary>
+            <param name="UpkeepRecordsDel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS_Logistics.API.Controllers.UpkeepRecordController.UpkeepRecordsUpd(TMS_Logistics.Model.UpkeepRecord)">
+            <summary>
+            保养记录修改
+            </summary>
+            <param name="obj"></param>
             <returns></returns>
         </member>
     </members>

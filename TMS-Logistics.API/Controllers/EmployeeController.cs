@@ -11,7 +11,8 @@ namespace TMS_Logistics.API.Controllers
     /// <summary>
     /// 员工登记
     /// </summary>
-    [Route("api/[Controller]/[action]")]
+    [Route("Employee")]
+    [ApiController]
     public class EmployeeController : Controller
     {
         public IEmployee employee;
@@ -28,7 +29,7 @@ namespace TMS_Logistics.API.Controllers
         /// <param name="EmployeePhone"></param>
         /// <param name="EmployeeType"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet,Route("EmployeeList")]
         public IActionResult EmployeeList(string EmployeeName, string EmployeePhone, int EmployeeType)
         {
             try

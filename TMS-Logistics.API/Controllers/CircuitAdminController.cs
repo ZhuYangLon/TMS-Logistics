@@ -15,6 +15,7 @@ namespace TMS_Logistics.API.Controllers
     /// </summary>
     [Authorize]
     [Route("api/[controller]/[action]")]
+    [ApiController] 
     public class CircuitAdminController : Controller
     {
         public ICircuitAdmin circuit;

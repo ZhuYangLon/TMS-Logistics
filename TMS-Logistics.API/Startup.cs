@@ -39,7 +39,7 @@ namespace TMS_Logistics.API
         public void ConfigureServices(IServiceCollection services)
         {
             //Á¬½Ó×Ö·û´®
-            ConnString.connstring = Configuration.GetConnectionString("default");
+            ConnString.connstring = Configuration.GetConnectionString("Default");
             //services.AddTransient<ILogin, Login>();
             services.AddControllers();
 

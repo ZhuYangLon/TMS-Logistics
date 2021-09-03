@@ -12,7 +12,8 @@ namespace TMS_Logistics.API.Controllers
     /// <summary>
     /// 入职办理
     /// </summary>
-    [Route("api/[controller]/[action]")]
+    [Route("HiredToHandle")]
+    [ApiController]
     public class HiredToHandleController : Controller
     {
         public IHiredToHandle hiredTo;
@@ -32,7 +33,7 @@ namespace TMS_Logistics.API.Controllers
         /// <param name="DepartmentCreateTime">合同签署日期</param>
         /// <param name="ExamineStatus">审批状态</param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet,Route(nameof(HiredToHandlesList))]
         public IActionResult HiredToHandlesList(string EmployeeName, string DepartmentName, string PositionName, string EmployeeEntryTime, string DepartmentCreateTime, string ExamineStatus)
         {
             try

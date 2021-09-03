@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,33 +11,37 @@ using Microsoft.Extensions.Logging;
 namespace TMS_Logistics.API.Controllers
 {
     /// <summary>
-    /// 保养记录
+    /// 应收费用管理
     /// </summary>
-    [Route("api/[controller]/[action]")]
-    public class UpkeepRecordController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ChargeController : ControllerBase
     {
-        public IUpkeepRecord Upkeep;
-        public ILogger<CircuitAdminController> logger;
-        public UpkeepRecordController(IUpkeepRecord _Upkeep, ILogger<CircuitAdminController> _logger)
+        public ICharges charges;
+        public ILogger<ChargeController> logger;
+        public ChargeController(ICharges _charges, ILogger<ChargeController> _logger)
         {
-            Upkeep = _Upkeep;
+            charges = _charges;
             logger = _logger;
         }
+
         /// <summary>
-        /// 保养记录显示
+        /// 应收费用显示
         /// </summary>
-        /// <param name="UpkeepRecordName"></param>
-        /// <param name="UpkeepRecordNowTime"></param>
-        /// <param name="LicensePlateNumber"></param>
+        /// <param name="ChargeOwnerOfCargoUnit">线路名称</param>
+        /// <param name="PayType">起点</param>
+        /// <param name="CheckType">终点</param>
+        /// <param name="CircuitResponsibleName">是否外协</param>
+        /// <param name="ProfessionalTime">货主手机号</param>
         /// <returns></returns>
-        [HttpGet]
-        public IActionResult UpkeepRecordsList(string UpkeepRecordName, string UpkeepRecordNowTime, string LicensePlateNumber)
+        [HttpGet,Route("ChargesList")]
+        public IActionResult ChargesList(string ChargeOwnerOfCargoUnit, string PayType, string CheckType, string CircuitResponsibleName, string ProfessionalTime)
         {
 
             try
             {
 
-                return Ok(Upkeep.UpkeepRecordsList(UpkeepRecordName, UpkeepRecordNowTime, LicensePlateNumber));
+                return Ok(charges.ChargesList(ChargeOwnerOfCargoUnit, PayType, CheckType, CircuitResponsibleName, ProfessionalTime));
 
             }
             catch (Exception ex)
@@ -45,17 +50,18 @@ namespace TMS_Logistics.API.Controllers
                 throw;
             }
         }
+
         /// <summary>
-        /// 保养记录添加
+        /// 应收费用添加
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        [HttpPost]
-        public IActionResult UpkeepRecordsAdd(UpkeepRecord obj)
+        [HttpPost,Route("ChargesAdd")]
+        public IActionResult ChargesAdd(Charge obj)
         {
             try
             {
-                int hang = Upkeep.UpkeepRecordsAdd(obj);
+                int hang = charges.ChargesAdd(obj);
                 if (hang > 0)
                 {
                     return Ok("添加成功");
@@ -71,17 +77,18 @@ namespace TMS_Logistics.API.Controllers
                 throw;
             }
         }
+
         /// <summary>
-        /// 保养记录删除
+        /// 应收费用删除
         /// </summary>
-        /// <param name="UpkeepRecordID"></param>
+        /// <param name="ChargeID"></param>
         /// <returns></returns>
-        [HttpPost]
-        public IActionResult UpkeepRecordsDel(string UpkeepRecordID)
+        [HttpPost,Route("ChargesDel")]
+        public IActionResult ChargesDel(string ChargeID)
         {
             try
             {
-                int hang = Upkeep.UpkeepRecordsDel(UpkeepRecordID);
+                int hang = charges.ChargesDel(ChargeID);
                 if (hang > 0)
                 {
                     return Ok("删除成功");
@@ -96,19 +103,19 @@ namespace TMS_Logistics.API.Controllers
                 logger.LogError(ex, "这里发生了错误");
                 throw;
             }
-            
         }
+
         /// <summary>
-        /// 保养记录反填
+        /// 应收费用反填
         /// </summary>
-        /// <param name="UpkeepRecordsDel"></param>
+        /// <param name="ChargeID"></param>
         /// <returns></returns>
-        [HttpGet]
-        public IActionResult UpkeepRecordsDetails(int UpkeepRecordsDel)
+        [HttpGet,Route("ChargesDetails")]
+        public IActionResult ChargesDetails(int ChargeID)
         {
             try
             {
-                return Ok(Upkeep.UpkeepRecordsDetails(UpkeepRecordsDel));
+                return Ok(charges.ChargesDetails(ChargeID));
             }
             catch (Exception ex)
             {
@@ -118,16 +125,16 @@ namespace TMS_Logistics.API.Controllers
 
         }
         /// <summary>
-        /// 保养记录修改
+        /// 应收费用修改
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        [HttpPost]
-        public IActionResult UpkeepRecordsUpd(UpkeepRecord obj)
+        [HttpPost,Route("ChargesUpd")]
+        public IActionResult ChargesUpd(Charge obj)
         {
             try
             {
-                int hang = Upkeep.UpkeepRecordsUpd(obj);
+                int hang = charges.ChargesUpd(obj);
                 if (hang > 0)
                 {
                     return Ok("修改成功");
